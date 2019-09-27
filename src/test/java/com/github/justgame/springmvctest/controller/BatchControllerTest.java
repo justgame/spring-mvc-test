@@ -35,10 +35,22 @@ public class BatchControllerTest {
         List<Long> tags = Arrays.asList(1L, 2L, 3L, 4L);
         ObjectMapper mapper = new ObjectMapper();
 
+        String resultJson = mapper.writeValueAsString(tags);
+
         mockMvc
             .perform(get("/batch/tags?tags=1,2,3,4"))
             .andExpect(status().isOk())
-            .andExpect(content().json(mapper.writeValueAsString(tags)));
+            .andExpect(content().json(resultJson));
+
+        mockMvc
+            .perform(get("/batch/tags?tags=1&tags=2&tags=3&tags=4"))
+            .andExpect(status().isOk())
+            .andExpect(content().json(resultJson));
+
+        mockMvc
+            .perform(get("/batch/tags?tags[0]=1&tags[1]=2&tags[2]=3&tags[3]=4"))
+            .andExpect(status().isOk())
+            .andExpect(content().json(resultJson));
     }
 
     @Test
@@ -48,6 +60,17 @@ public class BatchControllerTest {
 
         mockMvc
             .perform(get("/batch/tags2/1,2,3,4"))
+            .andExpect(status().isOk())
+            .andExpect(content().json(mapper.writeValueAsString(tags)));
+    }
+
+    @Test
+    public void testTags3() throws Exception {
+        List<Long> tags = Arrays.asList(1L, 2L, 3L, 4L);
+        ObjectMapper mapper = new ObjectMapper();
+
+        mockMvc
+            .perform(get("/batch/tags3?tags=1,2,3,4"))
             .andExpect(status().isOk())
             .andExpect(content().json(mapper.writeValueAsString(tags)));
     }
