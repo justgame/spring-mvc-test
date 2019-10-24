@@ -24,4 +24,11 @@ public class CourseService {
         System.out.println("get course: " + course);
         return course;
     }
+
+    public Course getCachedCourseSync(Long id) {
+        return cache.get(id, () -> {
+            System.out.println("id: " + id);
+            return new Course().setId(id).setName("test get cached course sync");
+        });
+    }
 }

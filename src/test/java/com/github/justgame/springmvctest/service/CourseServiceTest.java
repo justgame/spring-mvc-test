@@ -37,4 +37,12 @@ public class CourseServiceTest {
         Course course = courseService.getCourse(1L);
         assertNotNull(course);
     }
+
+    @Test
+    public void testGetCachedCourseSync() {
+        Long id = 1L;
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> courseService.getCachedCourseSync(id)).start();
+        }
+    }
 }
