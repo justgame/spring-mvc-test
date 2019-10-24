@@ -19,7 +19,7 @@ import java.util.Set;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RedisTest {
+public class RedisTests {
     @Autowired
     private StringRedisTemplate redis;
 
