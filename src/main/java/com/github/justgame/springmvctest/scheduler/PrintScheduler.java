@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class PrintScheduler {
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 10 * 1000)
     public void print() {
         System.out.println("print " + LocalDateTime.now());
         try {
