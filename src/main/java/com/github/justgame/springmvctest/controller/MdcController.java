@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MdcController {
     @GetMapping
     public String mdc(@RequestHeader("my-username") String username) {
-        log.info("access mdc controller with username: {}", username);
+        if (log.isInfoEnabled()) {
+            log.info("access mdc controller with username: {}", username);
+        }
         return "success";
     }
 }
