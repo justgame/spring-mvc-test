@@ -2,6 +2,7 @@ package com.github.justgame.springmvctest;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.Cache;
@@ -9,8 +10,10 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
@@ -39,5 +42,16 @@ public class SpringMvcTestApplication {
     @Bean
     public Cache cache(@Qualifier("caffeineCacheManager") CacheManager cacheManager) {
         return cacheManager.getCache(CACHE_NAME);
+    }
+
+    @Bean
+    @Profile("!prod")
+    public ApplicationRunner noProdRunner() {
+        return args -> System.out.println("not prod profiles active");
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

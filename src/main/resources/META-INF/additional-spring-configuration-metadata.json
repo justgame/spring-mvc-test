@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "page.page-size",
+      "type": "java.lang.String",
+      "description": "The page size of spring data jpa pageable."
+    }
+  ]
+}
