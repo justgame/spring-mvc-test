@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
@@ -48,10 +47,5 @@ public class SpringMvcTestApplication {
     @Profile("!prod")
     public ApplicationRunner noProdRunner() {
         return args -> System.out.println("not prod profiles active");
-    }
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
     }
 }
