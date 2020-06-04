@@ -11,11 +11,12 @@ import javax.annotation.PostConstruct;
  * @date 2020/6/3
  */
 @Service
-public class ToLogService {
+public class ToLogService implements IService {
     @Autowired
     private HasToLogService hasToLogService;
 
     @Log
+    @Override
     public void doSomething() {
         System.out.println("this is toLogService");
     }

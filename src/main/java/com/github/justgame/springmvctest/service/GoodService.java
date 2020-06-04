@@ -19,7 +19,7 @@ public class GoodService {
     private GoodRepository goodRepository;
 
     public Page<Good> list(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("createAt").descending());
+        Pageable pageable = PageRequest.of(page, size, ort.by("createAt").descending());
         return goodRepository.findAll(pageable);
     }
 }
