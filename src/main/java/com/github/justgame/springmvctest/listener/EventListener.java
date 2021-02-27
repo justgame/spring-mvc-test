@@ -16,6 +16,6 @@ public class EventListener {
     @org.springframework.context.event.EventListener
     public void listenCallEvent(CallEvent callEvent) throws InterruptedException {
         log.info(callEvent.getSource().getClass() + " be called.");
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(5);
     }
 }
